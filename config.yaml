@@ -1,0 +1,24 @@
+# You can specify your parameters for each data source.
+
+data_sources:
+  usda_ers: #data source for farm info.
+    url: "https://api.ers.usda.gov/data/arms/surveydata"
+    api_key: "v4bFa5MbpfKAVd2gF3c2fA74VzIEdYwp3CcxtmQG"
+    fetch_function: fetch_usda_ers_data  # Function name for fetching data
+    params:
+      year: "2015,2016"
+      state: "all"
+      report: "income statement"
+      farmtype: "operator households"
+      category: "collapsed farm typology"
+      category_value: "commercial"
+
+  world_bank: #data source for USA GDP info.
+    url: "http://api.worldbank.org/v2/country/US/indicator/NY.GDP.MKTP.CD"
+    api_key: null  # Replace with actual key if required for authentication
+    fetch_function: fetch_world_bank_data  # Function name for fetching data
+    params:
+      format: "json"
+      date: "1900:2020"
+
+
