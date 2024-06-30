@@ -15,8 +15,8 @@ The project includes the following components:
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/your-username/agtech-data-collection.git
-   cd agtech-data-collection
+   git clone https://github.com/sinasln1998/DataCollectionProj
+   cd DataCollectionProj
 2. **Install dependencies**:
    ```bash
    pip install -r requirements.txt
