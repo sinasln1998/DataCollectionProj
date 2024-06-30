@@ -2,7 +2,15 @@ import requests
 import pandas as pd
 import logging
 import yaml
+import os
+folder_name = 'Outputs'
 
+# Create a directory if it doesn't already exist
+if not os.path.exists(folder_name):
+    os.makedirs(folder_name)
+    print(f"Directory '{folder_name}' created.")
+else:
+    print(f"Directory '{folder_name}' already exists.")
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
@@ -65,7 +73,7 @@ def main():
         fetch_function = globals().get(info['fetch_function'])  # Get fetch function by name
         if fetch_function:
             data = fetch_function(info['url'], info.get('api_key'), info.get('params', {}))
-            filename = f"{source}_data.csv"  # Customize filename based on source
+            filename = f"Outputs\{source}_data.csv"  # Customize filename based on source
             save_to_csv(data, filename)
         else:
             logging.error(f"Fetch function {info['fetch_function']} not found for {source}")
