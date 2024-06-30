@@ -52,12 +52,13 @@ def fetch_world_bank_data(url, api_key, params):
 
 # Function to save DataFrame to CSV
 def save_to_csv(df, filename):
+    output_path = os.path.join(folder_name, filename)  # Construct full path to save in 'Outputs' folder
     if not df.empty:
         try:
-            df.to_csv(filename, index=False)
-            logging.info(f"Data saved to {filename}")
+            df.to_csv(output_path, index=False)
+            logging.info(f"Data saved to {output_path}")
         except Exception as e:
-            logging.error(f"Error saving data to {filename}: {e}")
+            logging.error(f"Error saving data to {output_path}: {e}")
     else:
         logging.warning("No data to save.")
 
@@ -73,7 +74,7 @@ def main():
         fetch_function = globals().get(info['fetch_function'])  # Get fetch function by name
         if fetch_function:
             data = fetch_function(info['url'], info.get('api_key'), info.get('params', {}))
-            filename = f"Outputs\{source}_data.csv"  # Customize filename based on source
+            filename = f"{source}_data.csv"  # Customize filename based on source
             save_to_csv(data, filename)
         else:
             logging.error(f"Fetch function {info['fetch_function']} not found for {source}")
